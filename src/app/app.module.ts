@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 
 import { CountryListComponent } from './country-list/country-list.component';
 import { HomeComponent } from './home/home.component';
-import { CountryDetailsComponent } from './country-details/country-details.component';
+import { CountryDetailsComponent } from './country-list/components/country-details/country-details.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CountryDetailsComponent } from './country-details/country-details.compo
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
 
     // styling
     MatSliderModule,
@@ -41,6 +43,7 @@ import { CountryDetailsComponent } from './country-details/country-details.compo
     MatButtonModule,
     MatFormFieldModule,
     MatTableModule,
+    ReactiveFormsModule,
 
     // sub-modules
     // CountriesModule

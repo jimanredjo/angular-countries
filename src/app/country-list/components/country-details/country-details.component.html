@@ -1,0 +1,40 @@
+<div class="container-fluid" style="margin-top: 70px;">
+
+
+  <form [formGroup]="countryForm">
+
+    <div *ngIf="country">
+
+      <div formGroupName="country">
+        <h2>{{country.name | uppercase}} Details</h2>
+
+      <label>
+        Naam:
+        <input #name type="text" formControlName="name">
+      </label>
+
+      <label>
+        Hoofdstad:
+        <input #capital type="text" formControlName="capital">
+      </label>
+
+          <label>
+            Currency:
+            <input #currency type="text" formControlName="currency">
+          </label>
+
+      </div>
+      </div>
+  </form>
+
+</div>
+
+
+  <!--    <h2>{{country.name | uppercase}} Details</h2>-->
+  <!--    <div>-->
+  <!--      <label>name:-->
+  <!--        <input [(ngModel)]="country.name" placeholder="name"/>-->
+  <!--      </label>-->
+  <!--    </div>-->
+  <!--    <button>go back</button>-->
+  <!--  </div>-->

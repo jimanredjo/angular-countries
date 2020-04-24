@@ -6,6 +6,15 @@
       {{ title }}!
     </h1>
 
+<!--    <app-country-details [selectedCountry]="selectedCountry"></app-country-details>-->
+
+    <hr>
+<!--        <div *ngIf="selectedCountry">-->
+<!--      <h2>{{selectedCountry.name | uppercase}} Details</h2>-->
+<!--      <div><span>id: </span>{{selectedCountry.numericCode}}</div>-->
+<!--      <div><span>capital: </span>{{selectedCountry.capital}}</div>-->
+<!--    </div>-->
+
     <table class="table table-hover" *ngIf="countryList">
       <!-- ADD HEADERS -->
       <thead>
@@ -18,16 +27,13 @@
 
       <tbody>
       <!-- BIND ARRAY TO TABLE -->
-      <tr *ngFor="let country of countryList" (click)="onSelect(country)">
-        <td>{{country.callingCodes}}</td>
+      <tr *ngFor="let country of countryList" [class.selected]="country === selectedCountry" (click)="onSelect(country)">
+        <td>{{country.numericCode}}</td>
         <td>{{country.name}}</td>
         <td>{{country.capital}}</td>
       </tr>
       </tbody>
     </table>
-
-
   </div>
-
-
 </div>
+

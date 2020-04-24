@@ -8,8 +8,11 @@ export class CountryService {
 
   constructor(private http: HttpClient) { }
 
-  getCountry() {
-    return this.http.get('/assets/countryJSON.json');
+  getCountries() {
+    return this.http.get('https://restcountries.eu/rest/v2/all');
   }
 
+  getCountry(name: string) {
+    return this.http.get(`https://restcountries.eu/rest/v2/ ${name}`);
+  }
 }
