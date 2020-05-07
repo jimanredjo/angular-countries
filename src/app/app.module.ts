@@ -19,6 +19,8 @@ import { MatTableModule } from '@angular/material/table';
 import { CountryListComponent } from './country-list/country-list.component';
 import { HomeComponent } from './home/home.component';
 import { CountryDetailsComponent } from './country-list/components/country-details/country-details.component';
+import { CountrySearchComponent } from './country-list/components/country-search/country-search.component';
+import {CountryService} from './country.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CountryDetailsComponent } from './country-list/components/country-detai
     CountryListComponent,
     HomeComponent,
     CountryDetailsComponent,
+    CountrySearchComponent,
 
   ],
   imports: [
@@ -48,7 +51,7 @@ import { CountryDetailsComponent } from './country-list/components/country-detai
     // sub-modules
     // CountriesModule
   ],
-  providers: [],
+  providers: [CountryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

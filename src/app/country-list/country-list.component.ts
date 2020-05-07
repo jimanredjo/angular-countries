@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from '../country.service';
-import {Country} from '../interfaceCountry';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { Country } from '../country';
 
 @Component({
   selector: 'app-country-list',
@@ -12,23 +10,35 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class CountryListComponent implements OnInit {
   title = 'Country List';
 
-  countryList;
+  _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredCountry = this.listFilter ? this.performFilter(this.listFilter) : this.countryList;
+  }
 
-  selectedCountry: Country;
+  filteredCountry: Country[] = [];
+  countryList: Country[] = [];
 
-  constructor(private countryService: CountryService, private router: Router){ }
+  constructor(private countryService: CountryService){ }
+
+  performFilter(filterBy: string): Country[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.countryList.filter((country: Country) =>
+      country.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
 
   ngOnInit(): void {
     this.getCountries();
-
-  }
-
-  onSelect(country): void {
-    this.selectedCountry = country;
-    this.router.navigate(['/country-details', country.name]);
   }
 
   getCountries() {
-    this.countryService.getCountries().subscribe(countries => this.countryList = countries);
+    this.countryService.getCountries()
+      .subscribe(countries => {
+        this.countryList = countries;
+        this.filteredCountry = this.countryList;
+      });
   }
 }

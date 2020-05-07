@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { CountryService } from '../../../country.service';
-import { Country } from '../../../interfaceCountry';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormGroup, FormBuilder} from '@angular/forms';
+// import {Country} from '../../../country';
+import {CountryName} from '../../../countryName';
 
 @Component({
   selector: 'app-country-details',
@@ -10,47 +11,27 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./country-details.component.css']
 })
 export class CountryDetailsComponent implements OnInit {
-  // @Input() country: Country;
+  pageTitle = 'Country Detail';
+  errorMessage = '';
+  country: CountryName[];
 
-  country: any;
-  //
-  // get country(): Country {
-  //   return this.country;
-  // }
-
-  countryForm: FormGroup;
-
-
-  constructor(private countryService: CountryService, private route: ActivatedRoute,  private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private countryService: CountryService) {
+  }
 
   ngOnInit(): void {
-    this.initForm();
-
-    // let name = this.route.snapshot.paramMap.get('name');
-    // this.countryService.getCountry(name)
-    //   .subscribe(country => this.country = country);
-
-    this.country = this.route.params.subscribe(params => {
-      const name: string = params.name; // (+) converts string 'id' to a number
-      this.countryService.getCountry(name)
-        .subscribe(country => this.country = country);
-      // In a real app: dispatch action to load the details here.
-    });
-  }
-
-  private initForm() {
-    this.countryForm = this.fb.group({
-      naam: [''],
-      hoofdstad: [''],
-      munteenheid: ['']
-    });
-  }
-
-  getCountryByName(name: string) {
-    this.countryService.getCountry(name).subscribe(
-      (country: Country) => this.viewCountry(country),
-      (err: any) => console.log(err)
+    const param = this.route.snapshot.paramMap.get('name');
+    this.countryService.getCountry(param).subscribe(
+      data => {
+        this.country = data;
+        console.log(data);
+      }
     );
   }
+
+    onBack(): void {
+      this.router.navigate(['/country-list']);
+    }
 
 }

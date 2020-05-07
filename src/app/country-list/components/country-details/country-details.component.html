@@ -1,40 +1,143 @@
+
 <div class="container-fluid" style="margin-top: 70px;">
 
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <button class="btn btn-outline-secondary mr-3"
+              style="width:80px"
+              (click)="onBack()">
+        <i class="fa fa-chevron-left"></i> Back
+      </button>
+    </div>
+  </div>
 
-  <form [formGroup]="countryForm">
-
-    <div *ngIf="country">
-
-      <div formGroupName="country">
-        <h2>{{country.name | uppercase}} Details</h2>
-
-      <label>
-        Naam:
-        <input #name type="text" formControlName="name">
-      </label>
-
-      <label>
-        Hoofdstad:
-        <input #capital type="text" formControlName="capital">
-      </label>
-
-          <label>
-            Currency:
-            <input #currency type="text" formControlName="currency">
-          </label>
-
+  <div class="container">
+    <div class="row bg-faded">
+      <div class="col-8 mx-auto text-center">
+        <img class="img-fluid border border-dark" [src]="country[0].flag" alt="Fir" slidestyle="height: 30rem;">
       </div>
-      </div>
-  </form>
+    </div>
+  </div>
 
+  <br>
+
+  <div class="row align-items-center">
+<div class="col-md-4">
+  <h2>Names</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tbody>
+      <tr>
+        <th>Common</th>
+        <td>{{country[0].name}}</td>
+      </tr>
+      <tr>
+        <th>Official</th>
+        <td>{{country[0].altSpellings[3]}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
 </div>
 
+  <div class="col-md-4">
+    <h2>Codes</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <th>ISO 3166-1 alpha-2</th>
+          <td>{{country[0].alpha2Code}}</td>
+        </tr>
+        <tr>
+          <th>ISO 3166-1 alpha-3</th>
+          <td>{{country[0].alpha3Code}}</td>
+        </tr>
+        <tr>
+          <th>International calling code</th>
+          <td>{{country[0].callingCodes}}</td>
+        </tr>
+        <tr *ngFor="let currency of country[0].currencies">
+          <th>ISO 4217 currency code	</th>
+          <td>{{currency.code}}</td>
+        </tr>
+        <tr>
+          <th>Top level domain	</th>
+          <td>{{country[0].topLevelDomain}}</td>
+        </tr>
+        </tbody>
+      </table>
 
-  <!--    <h2>{{country.name | uppercase}} Details</h2>-->
-  <!--    <div>-->
-  <!--      <label>name:-->
-  <!--        <input [(ngModel)]="country.name" placeholder="name"/>-->
-  <!--      </label>-->
-  <!--    </div>-->
-  <!--    <button>go back</button>-->
-  <!--  </div>-->
+    </div>
+  </div>
+
+  </div>
+
+  <div class="row">
+  <div class="col-md-4">
+    <h2>Language</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+        <tr *ngFor="let language of country[0].languages">
+          <th>Name	</th>
+          <td>{{language.name}}</td>
+        </tr>
+        <tr *ngFor="let language of country[0].languages">
+          <th>Native language	</th>
+          <td>{{language.nativeName}}</td>
+        </tr>
+        <tr *ngFor="let language of country[0].languages">
+          <th>ISO639_2 Code	</th>
+          <td>{{language.iso639_2}}</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Geography</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+        <tr *ngFor="let language of country[0].languages">
+          <th>Region	</th>
+          <td>{{country[0].region}}</td>
+        </tr>
+        <tr *ngFor="let language of country[0].languages">
+          <th>Subregion	</th>
+          <td>{{country[0].subregion}}</td>
+        </tr>
+        <tr>
+          <th>Capital	</th>
+          <td>{{country[0].capital}}</td>
+        </tr>
+        <tr>
+          <th>Demonym	</th>
+          <td>{{country[0].demonym}}</td>
+        </tr>
+        <tr>
+          <th>Lat/Lng	</th>
+          <td>{{country[0].latlng}}</td>
+        </tr>
+        <tr>
+          <th>Area	</th>
+          <td>{{country[0].area}}</td>
+        </tr>
+        <tr>
+          <th>Land Borders	</th>
+          <td>{{country[0].borders}}</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  </div>
+
+</div>
